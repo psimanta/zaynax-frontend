@@ -8,3 +8,9 @@
 .link {
     padding-left: 10px;
 }
+
+.link-group {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
