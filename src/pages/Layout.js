@@ -1,11 +1,19 @@
 import Navbar from "../parts/Navbar"
+import Sidebar from "../parts/Sidebar"
 import "./Layout.css";
 
 const Layout = ({ children }) => (
     <div className="body">
         <Navbar />
         <div className="layout">
-            {children}
+            <div className="row">
+                <div className="col-sm-2">
+                    <Sidebar />
+                </div>
+                <div className="col-sm-10">
+                    {children}
+                </div>
+            </div>
         </div>
     </div>
 )
