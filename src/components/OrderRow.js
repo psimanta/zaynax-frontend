@@ -1,4 +1,5 @@
 import "./OrderRow.css";
+import Button from "./Button";
 
 const OrderRow = ({ order, sl }) => {
     return (
@@ -13,6 +14,11 @@ const OrderRow = ({ order, sl }) => {
                 {order.price}
             </td>
             <td>
+                {order.status === "Pending" ?
+                    <span>
+                        <Button action="Confirm" category="Confirmed" />
+                        <Button action="Cancel" category="Cancelled" />
+                    </span> : ""}
             </td>
             <td>
                 {order.status}
