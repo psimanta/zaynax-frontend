@@ -10,7 +10,7 @@ const Layout = ({ children }) => (
                 <div className="col-sm-2">
                     <Sidebar />
                 </div>
-                <div className="col-sm-10">
+                <div className="col-sm-10 children">
                     {children}
                 </div>
             </div>
