@@ -1,10 +1,10 @@
 .navbar {
     overflow: hidden;
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
     position: fixed;
     top: 0;
     width: 100%;
-    box-shadow: 0px 15px 10px -20px grey;  
+    border: 1px solid #ECECEC; 
   }
   
   .navbar a {

@@ -2,7 +2,10 @@
     height: 100vh;
     background-color: #FFFFFF;
     display: flex;
+    position: fixed;
     flex-direction: column;
+    border: 1px solid #ECECEC;
+    width: 15%;
 }
 
 .link {

@@ -1,6 +1,8 @@
 .category {
     background-color: white;
     margin: 20px;
+    margin-left: 0;
+    margin-bottom: 60px;
     flex: 1;
     box-shadow: 0px 3px 6px #B9B9B91C;
     border-radius: 8px;
