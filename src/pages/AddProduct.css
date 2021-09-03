@@ -27,15 +27,12 @@
     height: 250px;
 }
 
-.upload-btn-txt {
-    align-content: center;
-}
-
 input[type="file"] {
     display: none;
 }
 
 .upload-img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
