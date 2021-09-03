@@ -1,6 +1,6 @@
-import { useState } from "react";
 import Layout from "./Layout"
 import Modal from "../components/Modal";
+import { useState } from "react";
 import "./AddProduct.css";
 import axios from "axios";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -14,19 +14,21 @@ const AddProduct = () => {
         shipping: "",
         color: "",
         size: "",
+        active: false,
         formData: new FormData()
     })
     const [image, setImage] = useState({ preview: "", raw: "" });
     const [showModal, setShowModal] = useState(false);
 
-    const { name, price, discount, shipping, color, size, formData } = values
+    const { name, price, discount, shipping, color, size, formData, active } = values
 
     const handleChange = e => {
+        const value = e.target.name === "active" ? !active : e.target.value;
         setValues({
             ...values,
-            [e.target.name]: e.target.value,
+            [e.target.name]: value,
         })
-        formData.set(e.target.name, e.target.value);
+        formData.set(e.target.name, value);
     }
 
     const handleSubmit = e => {
@@ -106,6 +108,12 @@ const AddProduct = () => {
                         <input className="form-control" name="color" value={color} required onChange={handleChange} />
                         <label htmlFor="size">Size</label>
                         <input className="form-control" name="size" value={size} required onChange={handleChange} />
+                        <br />
+                        Active
+                        <span className="onoff" style={{ float: "right" }}>
+                            <input type="checkbox" name="active" onChange={handleChange} checked={active} id="active" /><label htmlFor="active"></label>
+                        </span>
+                        <br />
                         <center>
                             <button type="submit" className="submit-btn">Add Product</button>
                         </center>
