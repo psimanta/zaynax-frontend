@@ -1,0 +1,41 @@
+.form {
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0px 3px 6px #0000001C;
+    border-radius: 15px;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    width: 150px;
+    background-color: #FFF700;
+    color: black;
+    border-radius: 23px;
+    font-weight: bold;
+    border: none;
+    padding: 8px;
+}
+
+.upload-btn {
+    background: #FFF700 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    height: 250px;
+}
+
+.upload-btn-txt {
+    align-content: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-img {
+    height: 100%;
+    object-fit: cover;
+}

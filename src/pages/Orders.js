@@ -39,9 +39,9 @@ const Orders = () => {
                         <tr>
                             <th width="5%">SL</th>
                             <th>Order No</th>
-                            <th>Item Price</th>
+                            <th width="18%">Item Price</th>
                             <th width="30%">Action</th>
-                            <th>Status</th>
+                            <th width="20%">Status</th>
                         </tr>
                     </thead>
                     <tbody>
