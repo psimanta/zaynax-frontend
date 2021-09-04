@@ -1,6 +1,8 @@
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
-import { removeFromCart } from "../utils/cartUtils"
+import { removeFromCart, increase, decrease } from "../utils/cartUtils"
 import "./CartItem.css";
 const CartItem = ({ item, setCartItems, setItemNo }) => {
     return (
@@ -30,9 +32,17 @@ const CartItem = ({ item, setCartItems, setItemNo }) => {
                         <DeleteOutlinedIcon />
                     </span>
                     <div className="detail">
-                        Quantity: EMS
+                        Quantity:
+                        <span className="quantity">
+                            <span className="updateIcon" onClick={() => increase(item, setCartItems)}>
+                                <AddOutlinedIcon fontSize="small" />
+                            </span>{item.quantity}
+                            <span className="updateIcon" onClick={() => decrease(item, setCartItems)}>
+                                <RemoveOutlinedIcon fontSize="small" />
+                            </span>
+                        </span>
                         <br />
-                        Total Price: {item.shipping}
+                        Total Price: {item.price * item.quantity + item.shipping}
                     </div>
                 </div>
             </div>

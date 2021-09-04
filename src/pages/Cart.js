@@ -7,6 +7,7 @@ import CartItem from "../components/CartItem";
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [itemNo, setItemNo] = useState(0);
+    const [discount, setDiscount] = useState(0);
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
@@ -15,6 +16,8 @@ const Cart = () => {
             setItemNo(cart.length);
         }
     }, [])
+    const subTotal = cartItems.map(item => item.quantity * item.price).reduce((a, b) => a + b, 0);
+    const totalShipping = cartItems.map(item => item.shipping).reduce((a, b) => a + b, 0);
 
     return (<LayoutUser itemNo={itemNo}>
         <div>
@@ -29,9 +32,16 @@ const Cart = () => {
             <div className="col-sm-8">
                 {cartItems && cartItems.map(item => <CartItem item={item} key={item._id} setCartItems={setCartItems} setItemNo={setItemNo} />)}
             </div>
-            <div className="col-sm-4">
+            <div className="offset-sm-1 col-sm-3">
                 Order Summary
                 <hr />
+                Subtotal ({itemNo} items) {subTotal}
+                <br />
+                Discount {discount}
+                <br />
+                Shipping {totalShipping}
+                <br />
+                Total Payable {totalShipping + subTotal - discount}
             </div>
         </div>
     </LayoutUser>)

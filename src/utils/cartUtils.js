@@ -1,4 +1,5 @@
-export const addToCart = (item, cb) => {
+export const addToCart = (cartItem, cb) => {
+    const item = { ...cartItem, quantity: 1 }
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
         cart = []
@@ -21,4 +22,21 @@ export const removeFromCart = (item, cb1, cb2) => {
     localStorage.setItem("cart", JSON.stringify(newCart));
     cb1(newCart);
     cb2(newCart.length)
+}
+
+export const increase = (item, cb) => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    const itemIndex = cart.findIndex((product => product._id === item._id));
+    cart[itemIndex].quantity++;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    cb(cart)
+}
+
+export const decrease = (item, cb) => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    const itemIndex = cart.findIndex((product => product._id === item._id));
+    if (cart[itemIndex].quantity === 1) return
+    cart[itemIndex].quantity--;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    cb(cart)
 }
