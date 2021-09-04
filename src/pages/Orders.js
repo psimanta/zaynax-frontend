@@ -1,22 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import OrderCategory from "../components/OrderCategory";
 import OrderRow from "../components/OrderRow";
+import axios from "axios";
+import { ORDER_ENDPOINT } from "../utils/apiUrl";
 import "./Orders.css";
 
 const categories = ["All", "Pending", "Confirmed", "Cancelled"]
 
 const Orders = () => {
+    const [orders, setOrders] = useState([])
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const orders = [
-        { orderNo: 123456, price: 4200, status: "Pending" },
-        { orderNo: 123453, price: 480, status: "Pending" },
-        { orderNo: 123455, price: 480, status: "Confirmed" },
-        { orderNo: 123453, price: 480, status: "Pending" },
-        { orderNo: 123453, price: 480, status: "Pending" },
-        { orderNo: 123453, price: 480, status: "Confirmed" },
-        { orderNo: 123454, price: 480, status: "Cancelled" }
-    ]
+
+    useEffect(() => {
+        axios.get(ORDER_ENDPOINT)
+            .then(response => setOrders(response.data))
+    }, []);
 
     const setCategory = (name) => {
         setSelectedCategory(name);
@@ -45,7 +44,7 @@ const Orders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {selectedCategory === "All" ?
+                        {selectedCategory === "All" && orders ?
                             orders.map((item, i) => (<OrderRow order={item} key={i} sl={i} />)) :
                             orders.filter(item => item.status === selectedCategory).map((item, i) => (<OrderRow order={item} key={i} sl={i} />))}
                     </tbody>

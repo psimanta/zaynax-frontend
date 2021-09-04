@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./AddProduct.css";
 import axios from "axios";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-const API = process.env.REACT_APP_API_URL
+import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 
 const AddProduct = () => {
     const [values, setValues] = useState({
@@ -34,7 +34,7 @@ const AddProduct = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const token = null
-        axios.post(`http://localhost:3001/api/v1/product`, formData, {
+        axios.post(PRODUCT_ENDPOINT, formData, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
