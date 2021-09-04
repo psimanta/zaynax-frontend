@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import OrderCategory from "../components/OrderCategory";
 import OrderRow from "../components/OrderRow";
-import axios from "axios";
-import { ORDER_ENDPOINT } from "../utils/apiUrl";
+import { getOrders } from "../utils/orderUtils";
 import "./Orders.css";
 
 const categories = ["All", "Pending", "Confirmed", "Cancelled"]
@@ -13,8 +12,7 @@ const Orders = () => {
     const [selectedCategory, setSelectedCategory] = useState("All");
 
     useEffect(() => {
-        axios.get(ORDER_ENDPOINT)
-            .then(response => setOrders(response.data))
+        getOrders(setOrders);
     }, []);
 
     const setCategory = (name) => {
@@ -45,8 +43,8 @@ const Orders = () => {
                     </thead>
                     <tbody>
                         {selectedCategory === "All" && orders ?
-                            orders.map((item, i) => (<OrderRow order={item} key={i} sl={i} />)) :
-                            orders.filter(item => item.status === selectedCategory).map((item, i) => (<OrderRow order={item} key={i} sl={i} />))}
+                            orders.map((item, i) => (<OrderRow order={item} key={i} sl={i} setOrders={setOrders} />)) :
+                            orders.filter(item => item.status === selectedCategory).map((item, i) => (<OrderRow order={item} key={i} sl={i} setOrders={setOrders} />))}
                     </tbody>
                 </table>
             </div>
