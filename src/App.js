@@ -7,6 +7,7 @@ import Promotions from "./pages/Promotions";
 import Orders from "./pages/Orders";
 import AddPromo from "./pages/AddPromo";
 import AddProduct from "./pages/AddProduct";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <AdminRoute path="/add-product" exact>
           <AddProduct />
         </AdminRoute>
+        <Route path="/cart" exact component={Cart} />
         <Route path="/" exact component={Home} />
       </Switch>
     </div>

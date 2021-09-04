@@ -1,18 +1,25 @@
-import "./Card.css";
+import { useState } from "react";
+import CartButton from "../components/CartButton";
+import "./CardHome.css";
 
-const CardHome = ({ item }) => {
-    return (<div className="col-sm-2">
+
+
+const CardHome = ({ item, setItemNo }) => {
+    const [showCart, setShowCart] = useState(false);
+    return (<div className="col-sm-2" onMouseOver={() => setShowCart(true)} onMouseLeave={() => setShowCart(false)}>
         <div className="product-card">
-            <div className="product-card-content">
+            {showCart ? <CartButton item={item} setItemNo={setItemNo} /> : (<div className="product-card-content">
                 <div className="img-div">
                     <img src={`http://localhost:3001/api/v1/product/image/${item._id}`} className="product-img-home" alt={item.name} />
                 </div>
                 <br />
                 <div>
                     <h6>{item.name}</h6>
+                    <br />
                     <h5>BDT.{item.price}<span className="discount">{item.discount}%</span></h5>
                 </div>
-            </div>
+            </div>)}
+
         </div>
     </div>);
 }
