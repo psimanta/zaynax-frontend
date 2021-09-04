@@ -5,6 +5,7 @@ import "./AddProduct.css";
 import axios from "axios";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
+import { userInfo } from "../utils/authUtils";
 
 const AddProduct = () => {
     const [values, setValues] = useState({
@@ -33,7 +34,7 @@ const AddProduct = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const token = null
+        const token = userInfo().token
         axios.post(PRODUCT_ENDPOINT, formData, {
             headers: {
                 "Content-Type": "application/json",

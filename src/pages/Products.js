@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Layout from "./Layout"
 import Button from "../components/Button"
 import Card from "../components/Card";
 import axios from "axios"
-import { useState, useEffect } from "react"
 import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 
 const Products = () => {

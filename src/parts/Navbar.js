@@ -1,9 +1,10 @@
+import { isAuthenticated, userInfo } from "../utils/authUtils";
 import "./Navbar.css"
 import logo from "../Assets/logo.png";
 const Navbar = () => (
     <div className="navbar">
         <img src={logo} alt="Logo" className="img" />
-        <a href="#home">User Name</a>
+        {isAuthenticated() && userInfo().role === "admin" ? <a href="/orders">User Name</a> : ""}
     </div>
 )
 

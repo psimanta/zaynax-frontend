@@ -5,12 +5,18 @@ import Button from "../components/Button";
 import PromoRow from "../components/PromoRow";
 import axios from "axios";
 import { PROMO_ENDPOINT } from "../utils/apiUrl";
+import { userInfo } from "../utils/authUtils";
 
 const Promotions = () => {
     const [promos, setPromos] = useState([]);
 
     useEffect(() => {
-        axios.get(PROMO_ENDPOINT)
+        const token = userInfo().token;
+        axios.get(PROMO_ENDPOINT, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then(response => {
                 setPromos(response.data)
             })
