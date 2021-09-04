@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import { isAuthenticated, userInfo } from "../utils/authUtils";
@@ -12,8 +13,15 @@ const Navbar = ({ itemNo }) => {
                 isAuthenticated() && userInfo().role === "admin" ?
                     <a href="/orders">User Name</a>
                     :
-                    (<span style={{ marginRight: "40px" }}><ShoppingCartOutlinedIcon fontSize="large" /> Cart <span className="itemNo"><center>{itemNo}</center></span>
-                        <PersonOutlineOutlinedIcon fontSize="large" /></span>)
+                    (<span>
+                        <Link to="/cart">
+                            <ShoppingCartOutlinedIcon fontSize="large" /> Cart
+                            <span className="itemNo">
+                                <center>{itemNo}</center>
+                            </span>
+                            <PersonOutlineOutlinedIcon fontSize="large" />
+                        </Link>
+                    </span>)
             }
         </div>
     )

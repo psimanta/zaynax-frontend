@@ -2,11 +2,21 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LayoutUser from "./LayoutUser";
 import Button from "../components/Button";
-import axios from "axios"
-import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
-    return (<LayoutUser>
+    const [cartItems, setCartItems] = useState([])
+    const [itemNo, setItemNo] = useState(0);
+
+    useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        if (cart && cart.length) {
+            setCartItems(cart);
+            setItemNo(cart.length);
+        }
+    }, [])
+
+    return (<LayoutUser itemNo={itemNo}>
         <div>
             <Link to="/">
                 <Button
@@ -16,8 +26,13 @@ const Cart = () => {
             </Link>
         </div>
         <div className="row">
-            <div className="col-sm-9">My Cart</div>
-            <div className="col-sm-3">Summary</div>
+            <div className="col-sm-8">
+                {cartItems && cartItems.map(item => <CartItem item={item} key={item._id} setCartItems={setCartItems} setItemNo={setItemNo} />)}
+            </div>
+            <div className="col-sm-4">
+                Order Summary
+                <hr />
+            </div>
         </div>
     </LayoutUser>)
 }

@@ -12,12 +12,13 @@ export const addToCart = (item, cb) => {
     }
 }
 
-export const removeFromCart = (item, cb) => {
+export const removeFromCart = (item, cb1, cb2) => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
         cart = []
     }
     const newCart = cart.filter(product => product._id !== item._id);
     localStorage.setItem("cart", JSON.stringify(newCart));
-    cb(newCart.length)
+    cb1(newCart);
+    cb2(newCart.length)
 }

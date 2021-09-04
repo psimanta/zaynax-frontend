@@ -1,8 +1,7 @@
 import { useState } from "react";
 import CartButton from "../components/CartButton";
 import "./CardHome.css";
-
-
+import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 
 const CardHome = ({ item, setItemNo }) => {
     const [showCart, setShowCart] = useState(false);
@@ -10,7 +9,7 @@ const CardHome = ({ item, setItemNo }) => {
         <div className="product-card">
             {showCart ? <CartButton item={item} setItemNo={setItemNo} /> : (<div className="product-card-content">
                 <div className="img-div">
-                    <img src={`http://localhost:3001/api/v1/product/image/${item._id}`} className="product-img-home" alt={item.name} />
+                    <img src={`${PRODUCT_ENDPOINT}/image/${item._id}`} className="product-img-home" alt={item.name} />
                 </div>
                 <br />
                 <div>
