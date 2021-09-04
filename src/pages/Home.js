@@ -1,7 +1,4 @@
-import Layout from "./Layout";
-
-const Home = () => (<Layout>
-    <p>I am home</p>
-</Layout>)
+const Home = () => (
+    <p>I am home</p>)
 
 export default Home;
