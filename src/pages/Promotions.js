@@ -35,8 +35,8 @@ const Promotions = () => {
                         styleProps={{ boxShadow: "0px 3px 6px #8A8A8A19", width: "190px", margin: "0px", marginBottom: "25px" }}>Add New Product</Button>
                 </Link>
             </div>
-            <div>
-                {promos ? promos.map(item => <PromoRow item={item} key={item._id} />) : ""}
+            <div className="row">
+                {promos ? promos.map((item, i) => <PromoRow item={item} key={item._id} sl={i + 1} />) : ""}
             </div>
         </Layout>
     )
