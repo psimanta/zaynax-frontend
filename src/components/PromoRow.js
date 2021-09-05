@@ -1,7 +1,7 @@
 import "./PromoRow.css";
 const getDate = (date) => {
     let format = new Date(date);
-    return `${format.getDate()}/${format.getMonth()}/${format.getFullYear()}`
+    return `${format.getDate()}/${format.getMonth() + 1}/${format.getFullYear()}`
 }
 const PromoRow = ({ item, sl }) => {
     let createDate = getDate(item.createdAt);
