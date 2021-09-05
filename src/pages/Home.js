@@ -18,7 +18,7 @@ const Home = () => {
     }, [])
 
     return (
-        <LayoutUser itemNo={itemNo} setItemNo={setItemNo}>
+        <LayoutUser itemNo={itemNo} setItemNo={setItemNo} setProducts={setProducts}>
             <div className="row">
                 {products ? products.map(item => <CardHome item={item} key={item._id} setItemNo={setItemNo} />) : ""}
             </div>

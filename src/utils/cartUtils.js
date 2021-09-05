@@ -1,5 +1,6 @@
 export const addToCart = (cartItem, cb) => {
-    const item = { ...cartItem, quantity: 1 }
+    const newPrice = parseInt(cartItem.price - cartItem.price * cartItem.discount / 100)
+    const item = { ...cartItem, quantity: 1, price: newPrice }
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
         cart = []
