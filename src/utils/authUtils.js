@@ -7,6 +7,13 @@ export const authenticate = (token, cb) => {
     }
 }
 
+export const authenticateUser = (token, cb) => {
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('jwt-user', JSON.stringify(token));
+        cb();
+    }
+}
+
 export const isAuthenticated = () => {
     if (typeof window === 'undefined') return false;
     if (localStorage.getItem('jwt')) {
@@ -15,6 +22,19 @@ export const isAuthenticated = () => {
             return true;
         } else {
             localStorage.removeItem('jwt');
+            return false;
+        }
+    } else return false;
+}
+
+export const isUserAuthenticated = () => {
+    if (typeof window === 'undefined') return false;
+    if (localStorage.getItem('jwt-user')) {
+        const { exp } = jwt_decode(JSON.parse(localStorage.getItem('jwt-user')));
+        if ((new Date()).getTime() <= exp * 1000) {
+            return true;
+        } else {
+            localStorage.removeItem('jwt-user');
             return false;
         }
     } else return false;
