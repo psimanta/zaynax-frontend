@@ -4,7 +4,9 @@
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0px 3px 6px #0000001C;
+    height: 370px;
 }
+
 
 .product-card-content {
     padding:20px;
