@@ -6,7 +6,7 @@ const Card = ({ item }) => {
         <div className="product-card">
             <div className="product-card-content">
                 <div className="img-div">
-                    <img src={`${PRODUCT_ENDPOINT}}/image/${item._id}`} className="product-img" alt={item.name} />
+                    <img src={`${PRODUCT_ENDPOINT}/image/${item._id}`} className="product-img" alt={item.name} />
                 </div>
                 <br />
                 <div>
