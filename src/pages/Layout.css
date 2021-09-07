@@ -5,11 +5,13 @@
 }
 
 .layout {
+    margin-top: 80px;
     margin-left: 0px;
     margin-right: 60px;
 }
 
 .layout-user {
+    margin-top: 80px;
     margin-left: 60px;
     margin-right: 60px;
 }

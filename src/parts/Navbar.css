@@ -1,12 +1,8 @@
 .navbar {
-    overflow: hidden;
-    background-color: #FFFFFF;
-    top: 0;
-    width: 100%;
     border: 1px solid #ECECEC; 
   }
   
-  .navbar a {
+.navbar a {
     float: right;
     display: block;
     color: black;

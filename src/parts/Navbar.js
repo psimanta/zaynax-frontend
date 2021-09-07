@@ -14,7 +14,7 @@ const Navbar = ({ history, itemNo, setProducts }) => {
             .then(response => setProducts(response.data))
     }
     return (
-        <div className="navbar">
+        <nav className="navbar fixed-top navbar-light bg-light">
             <img src={logo} alt="Logo" className="img" />
             {
                 isAuthenticated() && userInfo().role === "admin" ?
@@ -35,7 +35,7 @@ const Navbar = ({ history, itemNo, setProducts }) => {
                         <PersonOutlineOutlinedIcon fontSize="large" />
                     </span>)
             }
-        </div>
+        </nav>
     )
 }
 
