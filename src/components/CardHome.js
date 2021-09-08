@@ -5,7 +5,7 @@ import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 
 const CardHome = ({ item, setItemNo }) => {
     const [showCart, setShowCart] = useState(false);
-    return (<div className="col-sm-2" onMouseOver={() => setShowCart(true)} onMouseLeave={() => setShowCart(false)}>
+    return (<div className="col-lg-3 col-md-4 col-sm-6" onMouseOver={() => setShowCart(true)} onMouseLeave={() => setShowCart(false)}>
         <div className="product-card">
             {showCart ? <CartButton item={item} setItemNo={setItemNo} /> : (<div className="product-card-content">
                 <div className="img-div">

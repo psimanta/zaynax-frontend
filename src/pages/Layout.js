@@ -1,10 +1,10 @@
-import Navbar from "../parts/Navbar"
+import MyNavbar from "../parts/Navbar"
 import Sidebar from "../parts/Sidebar"
 import "./Layout.css";
 
 const Layout = ({ children }) => (
     <div className="body">
-        <Navbar />
+        <MyNavbar />
         <div className="layout">
             <div className="row">
                 <div className="col-sm-2">
