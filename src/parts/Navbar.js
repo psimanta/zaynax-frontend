@@ -1,19 +1,38 @@
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect } from "react";
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import { Nav, Navbar } from "react-bootstrap"
 import { isAuthenticated, userInfo } from "../utils/authUtils";
+import { setCartItemNo, getSearchProducts } from "../redux/actionCreators";
+import { countCartItem } from "../utils/cartUtils";
 import "./Navbar.css"
-import axios from "axios";
-import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 import logo from "../Assets/logo.png";
 
-const MyNavbar = ({ history, itemNo, setProducts }) => {
-    const handleSearch = (e) => {
-        axios.get(`${PRODUCT_ENDPOINT}/search?like=${e.target.value}`)
-            .then(response => setProducts(response.data))
+
+const mapStateToProps = ({ cartItemNo }) => {
+    return {
+        cartItemNo: cartItemNo
     }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setCartItemNo: (itemNo) => dispatch(setCartItemNo(itemNo)),
+        getSearchProducts: (value) => dispatch(getSearchProducts(value))
+    }
+}
+
+const MyNavbar = ({ history, cartItemNo, setCartItemNo, getSearchProducts }) => {
+    const handleSearch = (e) => {
+        getSearchProducts(e.target.value);
+    }
+
+    useEffect(() => {
+        setCartItemNo(countCartItem())
+    }, []);
     return (
         <Navbar fixed="top" bg="light" expand="lg">
             <img src={logo} alt="Logo" className="img" />
@@ -33,7 +52,7 @@ const MyNavbar = ({ history, itemNo, setProducts }) => {
                                 }} style={{ cursor: "pointer" }}>
                                     <ShoppingCartOutlinedIcon fontSize="large" /> Cart
                                     <span className="itemNo">
-                                        <center>{itemNo}</center>
+                                        <center>{cartItemNo}</center>
                                     </span>
                                 </span>
                                 <PersonOutlineOutlinedIcon fontSize="large" />
@@ -46,4 +65,4 @@ const MyNavbar = ({ history, itemNo, setProducts }) => {
 }
 
 
-export default withRouter(MyNavbar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MyNavbar));

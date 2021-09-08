@@ -1,4 +1,6 @@
 import { Switch, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { connect } from "react-redux";
 import AdminRoute from "./protectedRoutes/AdminRoute";
 import Home from "./pages/Home";
 import AdminLogin from "./pages/AdminLogin";
@@ -10,7 +12,20 @@ import AddPromo from "./pages/AddPromo";
 import AddProduct from "./pages/AddProduct";
 import Cart from "./pages/Cart";
 
-function App() {
+import { getDbProducts } from "./redux/actionCreators";
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getDbProducts: () => dispatch(getDbProducts())
+  }
+}
+
+function App({ getDbProducts }) {
+  useEffect(() => {
+    getDbProducts()
+  }, [])
+
   return (
     <div>
       <Switch>
@@ -38,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);

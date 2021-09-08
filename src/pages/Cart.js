@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import LayoutUser from "./LayoutUser";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
@@ -10,9 +11,14 @@ import { PROMO_ENDPOINT, ORDER_ENDPOINT } from "../utils/apiUrl";
 import { isUserAuthenticated } from "../utils/authUtils";
 import "./Cart.css";
 
-const Cart = ({ history }) => {
+const mapStateToProps = ({ cartItemNo }) => {
+    return {
+        cartItemNo: cartItemNo
+    }
+}
+
+const Cart = ({ history, cartItemNo }) => {
     const [cartItems, setCartItems] = useState([])
-    const [itemNo, setItemNo] = useState(0);
     const [discountRate, setDiscount] = useState(0);
     const [checked, setChecked] = useState(0)
     const [error, setError] = useState(false)
@@ -27,7 +33,6 @@ const Cart = ({ history }) => {
         const cart = JSON.parse(localStorage.getItem("cart"));
         if (cart && cart.length) {
             setCartItems(cart);
-            setItemNo(cart.length);
         }
     }, [])
 
@@ -80,7 +85,7 @@ const Cart = ({ history }) => {
 
 
 
-    return (<LayoutUser itemNo={itemNo}>
+    return (<LayoutUser>
         {showModal ? (<Modal setShowModal={() => { setShowModal(false) }}><CheckCircleIcon fontSize="large"></CheckCircleIcon>
             <br />Your Order Placed
             <br /> Successfully
@@ -102,7 +107,7 @@ const Cart = ({ history }) => {
         </div>
         <div className="row">
             <div className="col-sm-8 cart-item">
-                {cartItems && cartItems.map(item => <CartItem item={item} key={item._id} setCartItems={setCartItems} setItemNo={setItemNo} />)}
+                {cartItems && cartItems.map(item => <CartItem item={item} key={item._id} setCartItems={setCartItems} />)}
                 <div className="row">
                     <div className="col-sm-9">
                         <input
@@ -121,7 +126,7 @@ const Cart = ({ history }) => {
             <div className="offset-sm-1 col-sm-3 order-summary">
                 <h5>Order Summary</h5>
                 <hr />
-                Subtotal ({itemNo} items) <span style={{ float: "right" }}>&#2547; {subTotal}</span>
+                Subtotal ({cartItemNo} items) <span style={{ float: "right" }}>&#2547; {subTotal}</span>
                 <br />
                 Discount <span style={{ float: "right" }}>&#2547; {discount}</span>
                 <br />
@@ -140,4 +145,4 @@ const Cart = ({ history }) => {
     </LayoutUser>)
 }
 
-export default withRouter(Cart);
+export default connect(mapStateToProps)(withRouter(Cart));

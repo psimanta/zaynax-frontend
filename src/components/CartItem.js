@@ -3,8 +3,17 @@ import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import { PRODUCT_ENDPOINT } from "../utils/apiUrl";
 import { removeFromCart, increase, decrease } from "../utils/cartUtils"
+import { setCartItemNo } from "../redux/actionCreators";
 import "./CartItem.css";
-const CartItem = ({ item, setCartItems, setItemNo }) => {
+import { connect } from 'react-redux';
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setCartItemNo: (itemNo) => dispatch(setCartItemNo(itemNo))
+    }
+}
+
+const CartItem = ({ item, setCartItems, setCartItemNo }) => {
     return (
         <div>
             <div className="row">
@@ -28,7 +37,7 @@ const CartItem = ({ item, setCartItems, setItemNo }) => {
                     </div>
                 </div>
                 <div className="col-sm-3 content">
-                    <span style={{ float: "right", cursor: "pointer" }} onClick={() => { removeFromCart(item, setCartItems, setItemNo) }}>
+                    <span style={{ float: "right", cursor: "pointer" }} onClick={() => { removeFromCart(item, setCartItems, setCartItemNo) }}>
                         <DeleteOutlinedIcon />
                     </span>
                     <div className="detail">
@@ -51,4 +60,4 @@ const CartItem = ({ item, setCartItems, setItemNo }) => {
     )
 }
 
-export default CartItem;
+export default connect(null, mapDispatchToProps)(CartItem);

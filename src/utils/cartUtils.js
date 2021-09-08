@@ -41,3 +41,9 @@ export const decrease = (item, cb) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     cb(cart)
 }
+
+export const countCartItem = () => {
+    const cart = JSON.parse(localStorage.getItem("cart"))
+    if (cart && cart.length) return cart.length
+    else return 0
+}

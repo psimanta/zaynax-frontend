@@ -1,1 +1,2 @@
 export const SET_CART_ITEM_NO = "SET_CART_ITEM_NO"
+export const SET_PRODUCTS = "SET_PRODUCTS";

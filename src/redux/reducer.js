@@ -1,13 +1,19 @@
 import * as ACTION_TYPES from "./actionTypes";
 const initialState = {
-    cartItemNo: 0
+    cartItemNo: 0,
+    products: []
 }
-const rootReducer = (appState = initialState, action) => {
-    switch (action.type) {
+const rootReducer = (appState = initialState, { type, payload }) => {
+    switch (type) {
         case ACTION_TYPES.SET_CART_ITEM_NO:
             return {
                 ...appState,
-                cartItemNo: action.payload
+                cartItemNo: payload
+            }
+        case ACTION_TYPES.SET_PRODUCTS:
+            return {
+                ...appState,
+                products: payload
             }
         default:
             return appState;

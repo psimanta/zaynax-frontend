@@ -1,9 +1,9 @@
 import MyNavbar from "../parts/Navbar"
 import "./Layout.css";
 
-const LayoutUser = ({ children, itemNo, setProducts }) => (
+const LayoutUser = ({ children }) => (
     <div>
-        <MyNavbar itemNo={itemNo} setProducts={setProducts} />
+        <MyNavbar />
         <div className="body">
             <div className="layout-user">
                 <div className="row">
